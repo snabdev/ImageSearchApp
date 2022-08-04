@@ -32,13 +32,13 @@ jobs:
 
       - name: Build Solution
         run: |
-          msbuild.exe WpfApp3.sln /nologo /nr:false /p:DeployOnBuild=true /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:DeleteExistingFiles=True /p:platform="Any CPU" /p:configuration="Release" /p:PublishUrl="../_build"
-       #  msbuild.exe WpfApp3.sln /p:platform="Any CPU" /p:configuration="Release" /p:PublishUrl="../_build"
+          msbuild.exe WpfApp3.sln /p:platform="Any CPU" /p:configuration="Release" 
+       #   msbuild.exe WpfApp3.sln /nologo /nr:false /p:DeployOnBuild=true /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:DeleteExistingFiles=True /p:platform="Any CPU" /p:configuration="Release" /p:PublishUrl="../_build"
       - name: Upload artifact
         uses: actions/upload-artifact@v1.0.0
         with:
           name: WpfApp3
-          path: "./_build"
+          path: "./bin/Release/"
 
       # - name: Navigate to test binary folder
       #   run: cd $GITHUB_WORKSPACE/WpfApp3.Test/b
