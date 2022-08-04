@@ -32,7 +32,7 @@ jobs:
 
       - name: Build Solution
         run: |
-          msbuild.exe WpfApp3.sln /p:platform="Any CPU" /p:configuration="Release"
+          msbuild.exe WpfApp3.sln /p:platform="Any CPU" /p:configuration="Release" /p:PublishUrl="../_build"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v1.0.0
