@@ -100,13 +100,13 @@
     <Compile Include="Interfaces\IPhotoFeed.cs" />
     <Compile Include="Interfaces\IFeed.cs" />
     <Compile Include="Interfaces\ISearchEngineWrapper.cs" />
-    <Compile Include="Interfaces\IPhotoFeedSelector.cs" />
-    <Compile Include="Interfaces\IPhotoFeedSelectorFactory.cs" />
+    <Compile Include="Interfaces\IPhotoFeedTypeSelector.cs" />
+    <Compile Include="Interfaces\IPhotoFeedTypeSelectorFactory.cs" />
     <Compile Include="Services\FlickrFeed.cs" />
     <Compile Include="Services\PhotoFeed.cs" />
     <Compile Include="Services\PhotoFeedFactory.cs" />
-    <Compile Include="Services\PhotoFeedSelector.cs" />
-    <Compile Include="Services\PhotoFeedSelectorFactory.cs" />
+    <Compile Include="Services\PhotoFeedTypeSelector.cs" />
+    <Compile Include="Services\PhotoFeedTypeSelectorFactory.cs" />
     <Compile Include="Models\PhotoFeedType.cs" />
     <Compile Include="Services\SearchEngineFactory.cs" />
     <Compile Include="Services\SearchEngineWrapper.cs" />

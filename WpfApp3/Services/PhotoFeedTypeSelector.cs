@@ -8,7 +8,7 @@ using WpfApp3.Models;
 
 namespace WpfApp3.Services
 {
-    public class PhotoFeedSelector : IPhotoFeedSelector
+    public class PhotoFeedTypeSelector : IPhotoFeedTypeSelector
     {
         public delegate void PhotoFeedSelectionChange(PhotoFeedType feedType);
         public event PhotoFeedSelectionChange PhotoFeedSelectionChangedEvent;

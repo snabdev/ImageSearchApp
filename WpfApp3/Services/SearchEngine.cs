@@ -10,6 +10,11 @@ using WpfApp3.Interfaces;
 
 namespace WpfApp3
 {
+    public class EndSearchEventArgs 
+    {
+        public string SearchInput { get; set; }
+        public PhotoCollection SearchResults { get; set; }
+    }
     public class SearchEngine : ISearchEngine
     {
         
@@ -18,7 +23,7 @@ namespace WpfApp3
 
         //private static SearchEngine _instance = null;
 
-        private delegate void EndSearchResults(PhotoCollection photos);
+        private delegate void EndSearchResults(EndSearchEventArgs eventArgs);
         private event EndSearchResults EndSearchEvent;
 
         private delegate void StartSearchResults();
@@ -44,12 +49,12 @@ namespace WpfApp3
         //}
 
 
-        public void SubscribeToEndSearch(Action<PhotoCollection> handler)
+        public void SubscribeToEndSearch(Action<EndSearchEventArgs> handler)
         {
             this.EndSearchEvent += new EndSearchResults(handler);
         }
 
-        public void UnSubscribeFromEndSearch(Action<PhotoCollection> handler)
+        public void UnSubscribeFromEndSearch(Action<EndSearchEventArgs> handler)
         {
             this.EndSearchEvent -= new EndSearchResults(handler);
         }
@@ -83,7 +88,7 @@ namespace WpfApp3
                 });
             }
 
-            this.EndSearchEvent(photos); // IsLoading = False
+            this.EndSearchEvent(new EndSearchEventArgs() { SearchInput=searchInput, SearchResults=photos}); // IsLoading = False
 
 
         }

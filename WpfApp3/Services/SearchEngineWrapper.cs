@@ -10,9 +10,9 @@ namespace WpfApp3.Services
 {
     class SearchEngineWrapper :ISearchEngineWrapper
     {
-        private IPhotoFeedSelector _photoFeedSelector;
+        private IPhotoFeedTypeSelector _photoFeedSelector;
         private PhotoFeedType _feedType;
-        public SearchEngineWrapper(IPhotoFeedSelector photoFeedSelector)
+        public SearchEngineWrapper(IPhotoFeedTypeSelector photoFeedSelector)
         {
             _photoFeedSelector = photoFeedSelector;
 

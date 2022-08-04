@@ -9,9 +9,9 @@ namespace WpfApp3.Interfaces
 {
     public interface ISearchEngine
     {
-        void SubscribeToEndSearch(Action<PhotoCollection> handler);
+        void SubscribeToEndSearch(Action<EndSearchEventArgs> handler);
 
-        void UnSubscribeFromEndSearch(Action<PhotoCollection> handler);
+        void UnSubscribeFromEndSearch(Action<EndSearchEventArgs> handler);
 
         void SubscribeToStartSearch(Action handler);
 

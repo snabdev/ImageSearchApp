@@ -27,8 +27,9 @@ namespace WpfApp3
         private bool _canShowError;
         public HomePageViewModel(ISearchEngine searchEngine)
         {
-            searchEngine.SubscribeToEndSearch(EndSearchResultsHandler);
             searchEngine.SubscribeToStartSearch(StartSearchEventHandler);
+            searchEngine.SubscribeToEndSearch(EndSearchResultsHandler);
+
             IsWaiting = false;
         }
 
@@ -54,9 +55,9 @@ namespace WpfApp3
         }
 
 
-        private void EndSearchResultsHandler(PhotoCollection photos)
+        private void EndSearchResultsHandler(EndSearchEventArgs eventArgs)
         {
-            CanShowError = !photos.Any();
+            CanShowError = eventArgs!=null && !eventArgs.SearchResults.Any() && !string.IsNullOrEmpty(eventArgs.SearchInput);
             IsWaiting = false;
         }
     }

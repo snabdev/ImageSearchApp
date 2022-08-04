@@ -26,8 +26,8 @@ namespace WpfApp3
         {
             InitializeComponent();
 
-            IPhotoFeedSelectorFactory photoFeedSelectorFactory = new PhotoFeedSelectorFactory();
-            IPhotoFeedSelector photoFeedSelector = photoFeedSelectorFactory.GetPhotoFeedSelectorInstance();
+            IPhotoFeedTypeSelectorFactory photoFeedSelectorFactory = new PhotoFeedTypeSelectorFactory();
+            IPhotoFeedTypeSelector photoFeedSelector = photoFeedSelectorFactory.GetPhotoFeedTypeSelectorInstance();
             ISearchEngineWrapper searchEngineWrapper = new SearchEngineWrapper(photoFeedSelector);
 
             ImageSearchViewModel ImageSearchViewModel = new ImageSearchViewModel(searchEngineWrapper.CreateSearchEngine());

@@ -34,12 +34,12 @@ namespace WpfApp3
             }
         }
 
-        public void EndSearchResultsHandler(PhotoCollection photos)
+        public void EndSearchResultsHandler(EndSearchEventArgs eventArgs)
         {
             this.Pictures = new ObservableCollection<ImageResult>();
-            if (photos.Any())
+            if (eventArgs.SearchResults.Any())
             {
-                this.Pictures = new ObservableCollection<ImageResult>(photos.Select(o => new ImageResult() { ConvertedData = o.LargeUrl }));
+                this.Pictures = new ObservableCollection<ImageResult>(eventArgs.SearchResults.Select(o => new ImageResult() { ConvertedData = o.LargeUrl }));
             }
         }
 
