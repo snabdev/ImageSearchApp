@@ -1,0 +1,49 @@
+name: WpfApp3 CI workflow
+
+on:
+  push:
+    branches: ["master"]
+  pull_request:
+    branches: ["master"]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1
+
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1.0.2
+
+      - name: Checkout the code
+        uses: actions/checkout@v3
+
+      - name: Navigate to Workspace
+        run: cd $GITHUB_WORKSPACE
+
+      - name: Create Build Directory
+        run: mkdir _build
+
+      - name: Restore Packages
+        run: nuget restore WpfApp3.sln
+
+      - name: Build Solution
+        run: |
+          msbuild.exe EzRep.sln /p:platform="Any CPU" /p:configuration="Release"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: WpfApp3
+          path: "./_build"
+
+      # - name: Navigate to test binary folder
+      #   run: cd $GITHUB_WORKSPACE/WpfApp3.Test/b
+
+      # - name: Run tests
+      #   uses: microsoft-approved-actions/vstest@master
+      #   with:
+      #     testAssembly: WpfApp3.Test*.dll
+      #     searchFolder: ./tests/
+      #     runInParallel: true
