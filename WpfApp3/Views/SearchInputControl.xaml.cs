@@ -22,6 +22,7 @@ namespace WpfApp3
     /// </summary>
     public partial class SearchInputControl : UserControl
     {
+        ImageSearchViewModel imageSearchViewModel;
         public SearchInputControl()
         {
             InitializeComponent();
@@ -30,13 +31,23 @@ namespace WpfApp3
             IPhotoFeedTypeSelector photoFeedSelector = photoFeedSelectorFactory.GetPhotoFeedTypeSelectorInstance();
             ISearchEngineWrapper searchEngineWrapper = new SearchEngineWrapper(photoFeedSelector);
 
-            ImageSearchViewModel ImageSearchViewModel = new ImageSearchViewModel(searchEngineWrapper.CreateSearchEngine());
-            this.DataContext = ImageSearchViewModel;
+            imageSearchViewModel = new ImageSearchViewModel(searchEngineWrapper.CreateSearchEngine());
+            this.DataContext = imageSearchViewModel;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
 
+        private void AButton_Click(object sender, RoutedEventArgs e)
+        {
+            imageSearchViewModel.OnClick();
+        }
+
+        private void TextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key != Key.Enter)
+            {
+                return;
+            }
+            imageSearchViewModel.OnKeyDown();
         }
     }
 }

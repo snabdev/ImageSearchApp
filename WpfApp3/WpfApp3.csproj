@@ -187,7 +187,9 @@
   <ItemGroup>
     <Resource Include="Resources\no_result_still_2x.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\ClearIcon.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\WaitLoader.gif" />
   </ItemGroup>

@@ -20,6 +20,7 @@
             <RowDefinition Height="0.5*"></RowDefinition>
         </Grid.RowDefinitions>
         <Rectangle Grid.Row="0" Fill="AliceBlue" />
+        <Rectangle Grid.Row="2" Fill="AliceBlue" />
         <local:SearchInputControl x:Name="searchControl" />
 
         <Grid Grid.Row="1" >

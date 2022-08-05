@@ -7,6 +7,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Forms;
+using System.Windows.Input;
 using WpfApp3.Interfaces;
 using WpfApp3.Services;
 
@@ -21,7 +24,14 @@ namespace WpfApp3
             _searchEngine = searchEngine;
             SearchCommand = new DelegateCommand(ExecuteSearch, () => !string.IsNullOrEmpty(InputText));
         }
-
+        public void OnClick()
+        {
+            InputText = string.Empty;
+        }
+        public void OnKeyDown()
+        {
+            ExecuteSearch();
+        }
         public string InputText
         {
             get

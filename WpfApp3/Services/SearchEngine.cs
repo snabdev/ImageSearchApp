@@ -7,17 +7,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using WpfApp3.Interfaces;
+using System.IO;
 
 namespace WpfApp3
 {
-    public class EndSearchEventArgs 
+    public class EndSearchEventArgs
     {
         public string SearchInput { get; set; }
         public PhotoCollection SearchResults { get; set; }
     }
     public class SearchEngine : ISearchEngine
     {
-        
+
 
         public IPhotoFeed _photoFeed;
 
@@ -70,27 +71,48 @@ namespace WpfApp3
 
         public async Task StartSearch(string searchInput)
         {
-            PhotoCollection photos = new PhotoCollection();
-            this.StartSearchEvent(); // IsLoading = True
-
-            if (!string.IsNullOrEmpty(searchInput))
+            try
             {
-                photos = await Task.Run(() =>
+
+                PhotoCollection photos = new PhotoCollection();
+                this.StartSearchEvent(); // IsLoading = True
+
+                if (!string.IsNullOrEmpty(searchInput))
                 {
-                  //  Flickr flickr = new Flickr(FLICKR_API_KEY);
+                    photos = await Task.Run(() =>
+                    {
+                    //  Flickr flickr = new Flickr(FLICKR_API_KEY);
                     var options = new PhotoSearchOptions
-                    { Tags = searchInput, SafeSearch = SafetyLevel.Restricted, Page = 1 };
-                    options.SortOrder = PhotoSearchSortOrder.Relevance;
-                    PhotoCollection returnValue = _photoFeed.Feed.PhotosSearch(options);
-                    Thread.Sleep(2000);
-                    return returnValue;
+                        { Tags = searchInput, SafeSearch = SafetyLevel.Restricted, Page = 1 };
+                        options.SortOrder = PhotoSearchSortOrder.Relevance;
+                        PhotoCollection returnValue = _photoFeed.Feed.PhotosSearch(options);
+                        return returnValue;
 
-                });
+                    });
+                }
+
+                this.EndSearchEvent(new EndSearchEventArgs() { SearchInput = searchInput, SearchResults = photos }); // IsLoading = False
             }
+            catch(Exception ex)
+            {
+                string sDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MyApplicationDir");
 
-            this.EndSearchEvent(new EndSearchEventArgs() { SearchInput=searchInput, SearchResults=photos}); // IsLoading = False
+                if (!Directory.Exists(sDirectory))
+                {
+                    Directory.CreateDirectory(sDirectory);
+                }
 
+                using (FileStream stream = File.Create(Path.Combine(sDirectory, "Log.txt")))
+                {
+                    using (StreamWriter writer = new StreamWriter(stream))
+                    {
+                        writer.WriteLine(ex.Message);
+                    }
+                }
 
+                this.EndSearchEvent(new EndSearchEventArgs() { SearchInput = searchInput, SearchResults = new PhotoCollection()}); // IsLoading = False
+
+            }
         }
     }
 
