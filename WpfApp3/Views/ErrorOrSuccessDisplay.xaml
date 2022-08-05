@@ -10,6 +10,8 @@
         <local:BooleanToVisibilityConverter x:Key="bsv"></local:BooleanToVisibilityConverter>
     </UserControl.Resources>
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Label x:Name="label" Content="Error Showing Results"/>
+        <Label x:Name="label" Foreground="Black" FontSize="20">
+            OOPS! No results found!
+        </Label>
     </Grid>
 </UserControl>

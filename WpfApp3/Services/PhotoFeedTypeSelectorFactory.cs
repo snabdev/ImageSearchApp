@@ -7,15 +7,15 @@ using WpfApp3.Interfaces;
 
 namespace WpfApp3.Services
 {
-    class PhotoFeedSelectorFactory : IPhotoFeedSelectorFactory
+    class PhotoFeedTypeSelectorFactory : IPhotoFeedTypeSelectorFactory
     {
-        private static IPhotoFeedSelector _photoFeedSelector;
+        private static IPhotoFeedTypeSelector _photoFeedSelector;
 
-        public IPhotoFeedSelector GetPhotoFeedSelectorInstance()
+        public IPhotoFeedTypeSelector GetPhotoFeedTypeSelectorInstance()
         {
             if (_photoFeedSelector == null)
             {
-                _photoFeedSelector = new PhotoFeedSelector();
+                _photoFeedSelector = new PhotoFeedTypeSelector();
             }
             return _photoFeedSelector;
         }

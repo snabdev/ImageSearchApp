@@ -6,13 +6,16 @@
              xmlns:local="clr-namespace:WpfApp3"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    
     <Grid HorizontalAlignment="Center">
         <StackPanel Orientation="Horizontal" >
-            <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="32" Text="{Binding InputText, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            <TextBox x:Name="textBox" HorizontalAlignment="Left" KeyDown="TextBox_KeyDown"  Height="32" Text="{Binding InputText, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                  TextWrapping="Wrap" TextAlignment="Left" VerticalContentAlignment="Center" VerticalAlignment="Center" MinWidth="550" Margin="20, 0, 0, 0"/>
+            <Button Name="AButton" Width="30" Height="32" Click="AButton_Click">
+                <Image x:Name="clearIcon" Source="/Resources/ClearIcon.png" Height="13" ></Image>
+            </Button>
             <Button x:Name="button" Cursor="Hand" Content="Search" HorizontalAlignment="Center" VerticalContentAlignment="Center" MinWidth="200" 
-                    VerticalAlignment="Center" Height="32" Foreground="White" FontWeight="DemiBold" Background="Black" Command="{Binding SearchCommand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    VerticalAlignment="Center" Height="32" Foreground="Black" FontWeight="DemiBold" Background="#F0FFF0" Command="{Binding SearchCommand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            </Button>
         </StackPanel>
     </Grid>
 </UserControl>

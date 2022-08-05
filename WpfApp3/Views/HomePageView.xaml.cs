@@ -26,8 +26,8 @@ namespace WpfApp3
         public HomePageView()
         {
             InitializeComponent();
-            IPhotoFeedSelectorFactory photoFeedSelectorFactory = new PhotoFeedSelectorFactory();
-            IPhotoFeedSelector photoFeedSelector = photoFeedSelectorFactory.GetPhotoFeedSelectorInstance();
+            IPhotoFeedTypeSelectorFactory photoFeedTypeSelectorFactory = new PhotoFeedTypeSelectorFactory();
+            IPhotoFeedTypeSelector photoFeedSelector = photoFeedTypeSelectorFactory.GetPhotoFeedTypeSelectorInstance();
             ISearchEngineWrapper searchEngineWrapper = new SearchEngineWrapper(photoFeedSelector);
 
             photoFeedSelector.PublishPhotoFeedSelectionChange(PhotoFeedType.FLICKR);
